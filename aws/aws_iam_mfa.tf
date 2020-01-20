@@ -1,5 +1,7 @@
+data "aws_caller_identity" "current" {}
+
 locals {
-  aws_account = "account_number_goes_here"
+  aws_account = data.aws_caller_identity.current.account_id
 }
 
 resource "aws_iam_policy" "enforce_mfa" {
